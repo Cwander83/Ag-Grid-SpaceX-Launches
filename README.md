@@ -3,7 +3,7 @@
 
 ## Demo using SpaceX REST API
 
-![SpaceX Logo]('./assets/images/spaceX-logo.jpg')
+![SpaceX Logo](./assets/images/spaceX-logo.jpg)
 
 ## App description
 
