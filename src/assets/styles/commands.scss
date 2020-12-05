@@ -1,0 +1,20 @@
+.root {
+	margin: auto 10%;
+	width: auto;
+	display: flex;
+	justify-content: space-between;
+
+	span {
+		color: black;
+		margin-left: 20px;
+        text-decoration: underline;
+        cursor: pointer;
+		i {
+			color: green;
+			margin-right: 5px;
+		}
+	}
+	.select-section {
+		margin: 5px;
+	}
+}

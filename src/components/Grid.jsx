@@ -12,6 +12,12 @@ import '../assets/styles/grid.scss';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 
+// utils
+import { rocketButton } from '../utils/grid-data';
+
+// components
+import Commands from './Commands';
+
 const Grid = () => {
 	const [gridApi, setGridApi] = useState(null);
 
@@ -20,12 +26,6 @@ const Grid = () => {
 	// row data from useEffect
 	const [rowData, setRowData] = useState([]);
 
-	const actionButton = (params) => {
-		console.log(params);
-		alert(
-			`${params.data.name} was a ${params.data.success ? 'success' : 'failure'}`
-		);
-	};
 	const columns = [
 		{
 			headerName: 'Flight Number',
@@ -64,19 +64,21 @@ const Grid = () => {
 			headerName: 'Details',
 			field: 'details',
 			filter: false,
+			sortable: false,
 		},
 		{
 			headerName: 'Core Landing Success',
 			valueGetter: 'data.cores[0].landing_success',
 		},
 		{
-			headerName: 'Action',
-			field: 'name',
+			headerName: 'Rocket',
+			field: 'rocket',
 			filter: false,
-			maxWidth: 100,
+			sortable: false,
+			maxWidth: 200,
 			cellRendererFramework: (params) => (
 				<div>
-					<button onClick={() => actionButton(params)}>Click Me</button>
+					<button onClick={() => rocketButton(params)}>Rocket Details</button>
 				</div>
 			),
 		},
@@ -127,13 +129,10 @@ const Grid = () => {
 
 	return (
 		<>
-			<button onClick={() => onExportClick()}>Export</button>
-			<select onChange={(e) => onPaginationChange(e.target.value)}>
-				<option value="10">10</option>
-				<option value="15">15</option>
-				<option value="25">25</option>
-				<option value="50">50</option>
-			</select>
+			<Commands
+				onPaginationChange={onPaginationChange}
+				onExportClick={onExportClick}
+			/>
 			<div className="ag-theme-alpine-dark table">
 				<AgGridReact
 					onGridReady={onGridReady}
@@ -148,8 +147,8 @@ const Grid = () => {
 					//isRowSelectable={isRowSelectable}
 					pagination
 					//paginationAutoPageSize
-                    //paginationPageSize={10}
-                   // sideBar
+					//paginationPageSize={10}
+					// sideBar
 				></AgGridReact>
 			</div>
 		</>
