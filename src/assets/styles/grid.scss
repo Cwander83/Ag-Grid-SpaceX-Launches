@@ -1,0 +1,15 @@
+.table {
+	width: 80%;
+	height: 600px;
+	margin: auto;
+}
+
+.failure {
+	background-color: lightcoral;
+}
+.successful {
+	background-color: lightgreen;
+}
+.unknown {
+	background-color: inherit;
+}
