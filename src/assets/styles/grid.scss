@@ -5,11 +5,27 @@
 }
 
 .failure {
-	background-color: lightcoral;
+	background-color: red;
 }
+
 .successful {
-	background-color: lightgreen;
+	background-color: green;
 }
+
 .unknown {
 	background-color: inherit;
+}
+
+.button {
+	background-color: ivory;
+	border: 1px solid black;
+	border-radius: 20px;
+	padding: 8px 10px;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+	.table {
+		display: none;
+	}
 }
