@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import '../assets/styles/mobile-message.scss';
 
@@ -8,4 +8,4 @@ const mobileMessage = () => (
 	</div>
 );
 
-export default mobileMessage;
+export default memo(mobileMessage);

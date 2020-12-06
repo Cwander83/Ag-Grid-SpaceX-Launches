@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-// axios
-import axios from 'axios';
+// api
+import { fetchData } from '../api/api';
 
 // ag-grid
 import { AgGridReact } from 'ag-grid-react';
@@ -36,14 +36,12 @@ const Grid = () => {
 			headerCheckboxSelection: true,
 			tooltipField: 'name',
 			maxWidth: 200,
-			tooltipShowDelay: 0,
 		},
 		{
 			headerName: 'Name',
 			field: 'name',
 			tooltipField: 'success',
 			maxWidth: 250,
-
 			cellClassRules: {
 				successful: (params) => params.data.success === true,
 				failure: (params) => params.data.success === false,
@@ -73,6 +71,7 @@ const Grid = () => {
 		{
 			headerName: 'Details',
 			field: 'details',
+			tooltipField: 'details',
 			filter: false,
 			sortable: false,
 			flex: 1,
@@ -86,8 +85,9 @@ const Grid = () => {
 			cellRendererFramework: (params, query) => (
 				<button
 					className="button"
-					onClick={() => rocketButton(params, (query = 'rocket'))}
+					onClick={() => rocketButton(params, (query = 'rockets'))}
 				>
+					<i className="fas fa-rocket"></i>
 					Rocket Details
 				</button>
 			),
@@ -97,12 +97,13 @@ const Grid = () => {
 			field: 'launchpad',
 			filter: false,
 			sortable: false,
-			maxWidth: 160,
+			maxWidth: 180,
 			cellRendererFramework: (params, query) => (
 				<button
 					className="button"
-					onClick={() => launchpadButton(params, (query = 'launchpad'))}
+					onClick={() => launchpadButton(params, (query = 'launchpads'))}
 				>
+					<i className="fas fa-space-shuttle"></i>
 					Launchpad Details
 				</button>
 			),
@@ -110,15 +111,7 @@ const Grid = () => {
 	];
 
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const result = await axios('https://api.spacexdata.com/v4/launches');
-				setRowData(result.data);
-			} catch (err) {
-				console.error(err);
-			}
-		};
-		fetchData();
+		fetchData({ query: 'launches' }).then((results) => setRowData(results));
 	}, []);
 
 	// button to send rocket id to

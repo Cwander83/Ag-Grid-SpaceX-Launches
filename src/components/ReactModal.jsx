@@ -6,8 +6,20 @@ import { ModalContext } from '../context/modal.context';
 // React Modal npm package
 import Modal from 'react-modal';
 
+// components
+import RocketDetails from './RocketDetails';
+import LaunchPadDetails from './LaunchPadDetails';
+
 // style
 const customStyles = {
+	overlay: {
+		position: 'fixed',
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		backgroundColor: 'rgba(0, 0, 0, 0.85)',
+	},
 	content: {
 		top: '50%',
 		left: '50%',
@@ -22,7 +34,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const ReactModal = () => {
-	let { open, closeModal } = useContext(ModalContext);
+	let { open, closeModal, id } = useContext(ModalContext);
 
 	return (
 		<Modal
@@ -32,15 +44,8 @@ const ReactModal = () => {
 			style={customStyles}
 			contentLabel="SpaceX Modal"
 		>
-			<button onClick={closeModal}>close</button>
-			<div>I am a modal</div>
-			<form>
-				<input />
-				<button>tab navigation</button>
-				<button>stays</button>
-				<button>inside</button>
-				<button>the modal</button>
-			</form>
+			
+			{id.query === 'rockets' ? <RocketDetails /> : <LaunchPadDetails />}
 		</Modal>
 	);
 };
