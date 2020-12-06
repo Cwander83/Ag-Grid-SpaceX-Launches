@@ -7,14 +7,22 @@
 	span {
 		color: black;
 		margin-left: 20px;
-        text-decoration: underline;
-        cursor: pointer;
+		text-decoration: underline;
+		cursor: pointer;
+
 		i {
 			color: green;
 			margin-right: 5px;
 		}
 	}
+
 	.select-section {
 		margin: 5px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.root {
+		display: none;
 	}
 }

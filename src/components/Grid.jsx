@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 // axios
 import axios from 'axios';
@@ -12,13 +12,15 @@ import '../assets/styles/grid.scss';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 
-// utils
-import { rocketButton } from '../utils/grid-data';
+//context api
+import { ModalContext } from '../context/modal.context.js';
 
 // components
 import Commands from './Commands';
 
 const Grid = () => {
+	let { setId, openModal } = useContext(ModalContext);
+
 	const [gridApi, setGridApi] = useState(null);
 
 	const [gridColumnApi, setGridColumnApi] = useState(null);
@@ -34,18 +36,21 @@ const Grid = () => {
 			headerCheckboxSelection: true,
 			tooltipField: 'name',
 			maxWidth: 200,
+			tooltipShowDelay: 0,
 		},
 		{
 			headerName: 'Name',
 			field: 'name',
 			tooltipField: 'success',
 			maxWidth: 250,
+
 			cellClassRules: {
 				successful: (params) => params.data.success === true,
 				failure: (params) => params.data.success === false,
 				unknown: (params) => params.data.success === null,
 			},
 		},
+		// ? different ways of changing cell styles
 		// {
 		// 	headerName: 'Success',
 		// 	field: 'success',
@@ -60,26 +65,46 @@ const Grid = () => {
 			valueFormatter: (params) => new Date(params.value).toLocaleString(),
 			maxWidth: 250,
 		},
+		// ? nested data in json
+		// {
+		// 	headerName: 'Core Landing Success',
+		// 	valueGetter: 'data.cores[0].landing_success',
+		// },
 		{
 			headerName: 'Details',
 			field: 'details',
 			filter: false,
 			sortable: false,
-		},
-		{
-			headerName: 'Core Landing Success',
-			valueGetter: 'data.cores[0].landing_success',
+			flex: 1,
 		},
 		{
 			headerName: 'Rocket',
 			field: 'rocket',
 			filter: false,
 			sortable: false,
-			maxWidth: 200,
-			cellRendererFramework: (params) => (
-				<div>
-					<button onClick={() => rocketButton(params)}>Rocket Details</button>
-				</div>
+			maxWidth: 160,
+			cellRendererFramework: (params, query) => (
+				<button
+					className="button"
+					onClick={() => rocketButton(params, (query = 'rocket'))}
+				>
+					Rocket Details
+				</button>
+			),
+		},
+		{
+			headerName: 'Launchpad',
+			field: 'launchpad',
+			filter: false,
+			sortable: false,
+			maxWidth: 160,
+			cellRendererFramework: (params, query) => (
+				<button
+					className="button"
+					onClick={() => launchpadButton(params, (query = 'launchpad'))}
+				>
+					Launchpad Details
+				</button>
 			),
 		},
 	];
@@ -96,6 +121,20 @@ const Grid = () => {
 		fetchData();
 	}, []);
 
+	// button to send rocket id to
+	const rocketButton = (params, query) => {
+		console.log(params.value, query);
+		setId({ id: params.value, query: query });
+		openModal();
+	};
+
+	// button to send launchpad id to
+	const launchpadButton = (params, query) => {
+		console.log(params.value, query);
+		setId({ id: params.value, query: query });
+		openModal();
+	};
+
 	function onGridReady(params) {
 		setGridApi(params.api);
 		setGridColumnApi(params.columnApi);
@@ -106,22 +145,22 @@ const Grid = () => {
 		filter: true,
 		editable: true,
 		floatingFilter: true,
-		flex: 1,
 	};
 
 	const onExportClick = () => {
 		gridApi.exportDataAsCsv();
 	};
 
-	//const rowSelectionType = 'multiple';
+	// setting multi row selection to multiple
+	const rowSelectionType = 'multiple';
 
 	const onSelectionChanged = (event) => {
 		console.log(event.api.getSelectedRows());
 	};
 
-	// const isRowSelectable = (node) => {
-	// 	return node.data ? node.data.flight_number % 2 === 0 : false;
-	// };
+	const isRowSelectable = (node) => {
+		return node.data;
+	};
 
 	const onPaginationChange = (pageSize) => {
 		gridApi.paginationSetPageSize(Number(pageSize));
@@ -140,14 +179,13 @@ const Grid = () => {
 					defaultColDef={defaultColDef}
 					rowData={rowData}
 					enableBrowserTooltips
-					//rowSelection={rowSelectionType}
+					rowSelection={rowSelectionType}
 					onSelectionChanged={onSelectionChanged}
 					rowMultiSelectWithClick
-					rowSelectionType="multiple"
 					//isRowSelectable={isRowSelectable}
 					pagination
 					//paginationAutoPageSize
-					//paginationPageSize={10}
+					paginationPageSize={10}
 					// sideBar
 				></AgGridReact>
 			</div>
