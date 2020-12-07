@@ -1,0 +1,51 @@
+.container {
+	width: 100%;
+	max-width: 600px;
+	max-height: 90vh;
+
+	img {
+		width: 100%;
+		max-width: 600px;
+		height: 200px;
+		margin: auto;
+	}
+	div {
+		text-align: right;
+		margin-bottom: 10px;
+		span {
+			margin-right: 10px;
+			color: black;
+			margin-left: 20px;
+			text-decoration: underline;
+			cursor: pointer;
+
+			i {
+				color: black;
+				margin-right: 5px;
+			}
+		}
+	}
+	h1 {
+		width: 80%;
+	}
+	.row {
+		display: flex;
+		justify-content: flex-start;
+		margin-bottom: 0;
+		h4 {
+			padding: 0;
+			margin: 0;
+			letter-spacing: 0.16rem;
+			line-height: 1.4rem;
+		}
+
+		.col-field {
+			width: 28%;
+			text-align: left;
+		}
+		.col-description {
+			width: 72%;
+			text-align: left;
+		}
+	}
+}

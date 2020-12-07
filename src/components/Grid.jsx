@@ -174,7 +174,7 @@ const Grid = () => {
 					enableBrowserTooltips
 					rowSelection={rowSelectionType}
 					onSelectionChanged={onSelectionChanged}
-					rowMultiSelectWithClick
+					//rowMultiSelectWithClick
 					//isRowSelectable={isRowSelectable}
 					pagination
 					//paginationAutoPageSize
