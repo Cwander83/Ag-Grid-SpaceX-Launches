@@ -4,7 +4,7 @@
 
 ![SpaceX Logo](./src/assets/images/spaceX-logo.jpg)
 
-### [Live site click here](https://cwander.com)
+### [Live site click here](https://cwander83.github.io/Ag-Grid-SpaceX-Launches/)
 
 ## App description
 
