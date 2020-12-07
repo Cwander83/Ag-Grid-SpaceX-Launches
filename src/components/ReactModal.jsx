@@ -39,7 +39,6 @@ const ReactModal = () => {
 	return (
 		<Modal
 			isOpen={open}
-			//onAfterOpen={afterOpenModal}
 			onRequestClose={closeModal}
 			style={customStyles}
 			contentLabel="SpaceX Modal"

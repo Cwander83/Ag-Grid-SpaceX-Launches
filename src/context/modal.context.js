@@ -12,8 +12,6 @@ const ModalContextProvider = (props) => {
 
 	const closeModal = () => setOpen(false);
 
-	console.log('context: ' + { open, id });
-
 	return (
 		<ModalContext.Provider
 			value={{
