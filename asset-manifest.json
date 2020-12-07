@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Ag-Grid-SpaceX-Launches/static/css/main.e670ee65.chunk.css",
+    "main.js": "/Ag-Grid-SpaceX-Launches/static/js/main.8679fc43.chunk.js",
+    "main.js.map": "/Ag-Grid-SpaceX-Launches/static/js/main.8679fc43.chunk.js.map",
+    "runtime-main.js": "/Ag-Grid-SpaceX-Launches/static/js/runtime-main.906d90b1.js",
+    "runtime-main.js.map": "/Ag-Grid-SpaceX-Launches/static/js/runtime-main.906d90b1.js.map",
+    "static/css/2.946c9812.chunk.css": "/Ag-Grid-SpaceX-Launches/static/css/2.946c9812.chunk.css",
+    "static/js/2.968c243f.chunk.js": "/Ag-Grid-SpaceX-Launches/static/js/2.968c243f.chunk.js",
+    "static/js/2.968c243f.chunk.js.map": "/Ag-Grid-SpaceX-Launches/static/js/2.968c243f.chunk.js.map",
+    "index.html": "/Ag-Grid-SpaceX-Launches/index.html",
+    "static/css/2.946c9812.chunk.css.map": "/Ag-Grid-SpaceX-Launches/static/css/2.946c9812.chunk.css.map",
+    "static/css/main.e670ee65.chunk.css.map": "/Ag-Grid-SpaceX-Launches/static/css/main.e670ee65.chunk.css.map",
+    "static/js/2.968c243f.chunk.js.LICENSE.txt": "/Ag-Grid-SpaceX-Launches/static/js/2.968c243f.chunk.js.LICENSE.txt",
+    "static/media/banner.70a3298a.jpg": "/Ag-Grid-SpaceX-Launches/static/media/banner.70a3298a.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.906d90b1.js",
+    "static/css/2.946c9812.chunk.css",
+    "static/js/2.968c243f.chunk.js",
+    "static/css/main.e670ee65.chunk.css",
+    "static/js/main.8679fc43.chunk.js"
+  ]
+}
